@@ -10,10 +10,12 @@ spec:
     metadata:
       labels:
         app: nginx-nap
+      annotations:
+        version: v1.1
     spec:
       containers:
         - name: nginx-nap
-          image: registryemeasa.azurecr.io/nginx/nap:latest
+          image: registryemeasa.azurecr.io/nginx/nap:v1.0
           imagePullPolicy: Always
           ports:
             - containerPort: 80
