@@ -27,7 +27,7 @@ resource "kubernetes_deployment" "nginx-nap" {
           app = "nginx-nap"
         }
         annotations = {
-          version = "v1.5"
+          version = "v1.7"
         }
       }
 

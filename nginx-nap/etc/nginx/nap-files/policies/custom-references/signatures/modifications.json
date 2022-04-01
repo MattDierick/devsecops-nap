@@ -5,7 +5,7 @@
                 "enabled": false
             },
             "entity": {
-                "signatureId": 200015020
+                "signatureId": 200001475
             },
             "entityType": "signature",
             "action": "add-or-update"
@@ -15,27 +15,7 @@
                 "enabled": false
             },
             "entity": {
-                "signatureId": 200015066
-            },
-            "entityType": "signature",
-            "action": "add-or-update"
-        },
-        {
-            "entityChanges": {
-                "enabled": false
-            },
-            "entity": {
-                "signatureId": 200015011
-            },
-            "entityType": "signature",
-            "action": "add-or-update"
-        },
-        {
-            "entityChanges": {
-                "enabled": false
-            },
-            "entity": {
-                "signatureId": 200015013
+                "signatureId": 200000098
             },
             "entityType": "signature",
             "action": "add-or-update"
