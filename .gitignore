@@ -1,2 +1,4 @@
 nginx-repo.crt
 nginx-repo.key
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
