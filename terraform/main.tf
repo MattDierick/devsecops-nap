@@ -1,9 +1,12 @@
 provider "kubernetes" {
+  config_path    = "~/.kube/config"
+  config_context = "aks-northeurope"
 }
 
 resource "kubernetes_deployment" "nginx-nap" {
   metadata {
     name = "nginx-nap"
+    namespace = "sentence"
     labels = {
       app = "nginx-nap"
     }
@@ -23,6 +26,9 @@ resource "kubernetes_deployment" "nginx-nap" {
         labels = {
           app = "nginx-nap"
         }
+        annotations = {
+          version = "v1.2"
+        }
       }
 
       spec {
@@ -34,8 +40,10 @@ resource "kubernetes_deployment" "nginx-nap" {
           port {
             container_port = "80"
            }
-
- }
+        }
+        image_pull_secrets {
+          name = "secret-azure-acr"
+        }
         }
       }
     }
@@ -44,10 +52,7 @@ resource "kubernetes_deployment" "nginx-nap" {
 resource "kubernetes_service" "nginx-nap" {
   metadata {
     name = "nginx-nap"
-    labels {
-      app = "nginx-nap"
-      service = "nginx-nap"
-    }
+    namespace = "sentence"
   }
   spec {
     selector = {
@@ -65,10 +70,7 @@ resource "kubernetes_service" "nginx-nap" {
 resource "kubernetes_service" "nginx-nap-external" {
   metadata {
     name = "nginx-nap-external"
-    labels {
-      app = "nginx-nap"
-      service = "nginx-nap"
-    }
+    namespace = "sentence"
   }
   spec {
     selector = {
