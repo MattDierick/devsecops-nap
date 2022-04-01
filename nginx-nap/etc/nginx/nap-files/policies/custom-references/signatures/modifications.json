@@ -2,7 +2,7 @@
     "modifications": [
         {
             "entityChanges": {
-                "enabled": false
+                "enabled": true
             },
             "entity": {
                 "signatureId": 200001475
@@ -12,7 +12,7 @@
         },
         {
             "entityChanges": {
-                "enabled": false
+                "enabled": true
             },
             "entity": {
                 "signatureId": 200000098
