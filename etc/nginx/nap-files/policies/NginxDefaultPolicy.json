@@ -1,0 +1,6 @@
+{
+    "policy" : {
+        "name": "default_policy",
+        "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" }
+    }
+}
