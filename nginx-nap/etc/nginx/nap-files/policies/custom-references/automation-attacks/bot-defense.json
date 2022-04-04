@@ -1,6 +1,6 @@
 {
     "settings": {
-        "isEnabled": true
+        "isEnabled": false
     },
     "mitigations": {
         "classes": [
