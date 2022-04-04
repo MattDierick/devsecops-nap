@@ -129,3 +129,11 @@ Now, it is time for SecOps to `operate` the security in a modern environment. To
 ## Change blocking page
 
 Business unit asked you to make the blocking page more custom. To do so, edit the `source of truth (Github)` to reflect this change.
+Edit `nginx-nap/etc/nginx/nap-files/policies/custom-references/response-pages/response-pages.json` file as you want.
+
+If you are interested to understand the NAP Policy tree, please look at here : https://github.com/MattDierick/devsecops-nap/tree/dev/nginx-nap/etc/nginx/nap-files/policies
+
+This tree has been created by Jeppe. It represents a piece of the policy, up to you to complete it with more branches and settings.
+
+## Commit your change
+

@@ -27,7 +27,7 @@ resource "kubernetes_deployment" "nginx-nap" {
           app = "nginx-nap"
         }
         annotations = {
-          version = "v1.15"
+          version = "v1.17"
         }
       }
 
@@ -63,7 +63,7 @@ resource "kubernetes_service" "nginx-nap" {
       target_port = 80
     }
 
-    type = "ClusterIP"
+    type = "NodePort"
   }
 }
 
