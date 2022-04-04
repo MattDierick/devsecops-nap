@@ -10,7 +10,7 @@
             },
             {
                 "name": "untrusted-bot",
-                "action": "alarm"
+                "action": "block"
             },
             {
                 "name": "malicious-bot",
