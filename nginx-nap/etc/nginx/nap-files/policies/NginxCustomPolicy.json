@@ -84,7 +84,7 @@
         "servertechnologiesReference": {
             "link": "file:///etc/nginx/nap-files/policies/custom-references/signatures/server-technologies.json"
         },
-        "botDefenseReference": {
+        "botdefenseReference": {
             "link": "file:///etc/nginx/nap-files/policies/custom-references/automation-attacks/bot-defense.json"
         },
         "filetypeReference": {
