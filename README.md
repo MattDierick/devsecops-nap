@@ -1,4 +1,4 @@
-# devsecops-nap
+# DevSecOps with Nginx App Protect and F5XC
 Repo to simplify and learn DevSecOps with Nginx App Protect
 
 # Pre-Reqs
@@ -9,10 +9,14 @@ Repo to simplify and learn DevSecOps with Nginx App Protect
 * Kubectl CLI and/or k8s tools like Lens
 * Nginx App Protect license
 
+# Clone this repo in your own GitHub
+
+Clone the repo in order to have your own repo in your own GitHub
+
 # Deploy Sentence App in your AKS
 
 * Deploy Sentence Application in your AKS
-* To do so, use the manifests available in /k8s-deployment folder
+* To do so, use the manifests available in /k8s-deployment folder `aks-sentence-deployment.yaml`
 
 ## Deploy the Sentence App microservice
 
@@ -20,7 +24,7 @@ The manifest aks-sentence-deployment.yaml will deploy the different microservice
 
 ## Deploy the frontend microservice
 
-The manifest aks-sentence-deployment-nginx-nolb.yaml will deploy the frontend service (base on nginx webserver). As you can notice, this service is not yet exposed. The associated service is a ClusterIP type.
+The manifest `aks-sentence-deployment-nginx-nolb.yaml` will deploy the frontend service (base on nginx webserver). As you can notice, this service is not yet exposed. The associated service is a ClusterIP type.
 
 # Build the Nginx App Protect docker image
 
@@ -45,6 +49,10 @@ A configuration update is:
 
 `docker login <your_registry>.azurecr.io --username 00000000-0000-0000-0000-000000000000 --password $TOKEN`
 
+* Collect the outcomes (username and password), and run the next command to create the k8s secret
+
+`kubectl create secret docker-registry secret-azure-acr --namespace <your-namespace> --docker-server=<your_registry>.azurecr.io --docker-username=<username-generated> --docker-password=<password-generated>`
+
 **Steps**
 
 * In /nginx-nap directory, copy your nginx-repo.crt and nginx-repo.key
@@ -55,4 +63,18 @@ A configuration update is:
 * Push your NAP image into your private registry
 
 `docker push <your_registry>.azurecr.io/nginx/nap:v1.0`
+
+# Deploy the NAP in front of the Sentence App
+
+It is time to expose and protect Sentence Application. To do so, deploy NAP in your AKS and route traffic to the right services.
+
+* As a reminder (kubectl get services), the FrontEnd service is called `sentence-frontend-nginx`and listening on port `80`
+* In your Github repo, check the files
+    * nginx-nap/etc/nginx/upstream.d/http-sentence.conf -> this is the upstream (the sentence-frontend-nginx service)
+    * nginx-nap/etc/nginx/vhosts.d/http-sentence.conf -> this is the vhosts (choose any fqdn for your lab)
+
+* We will have a look later on the NAP policy tree
+* Deploy the NAP in your AKS
+
+`kubectl apply -f aks-sentence-deployment-nap.yaml`
 
