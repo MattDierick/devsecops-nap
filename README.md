@@ -129,11 +129,75 @@ Now, it is time for SecOps to `operate` the security in a modern environment. To
 ## Change blocking page
 
 Business unit asked you to make the blocking page more custom. To do so, edit the `source of truth (Github)` to reflect this change.
-Edit `nginx-nap/etc/nginx/nap-files/policies/custom-references/response-pages/response-pages.json` file as you want.
+Edit `nginx-nap/etc/nginx/nap-files/policies/custom-references/response-pages/response-pages.json` file as you want. Make this edit where you want:
+
+* in GitHub directly
+* in your laptop. Don't forget to commit changes in GitHub
+
 
 If you are interested to understand the NAP Policy tree, please look at here : https://github.com/MattDierick/devsecops-nap/tree/dev/nginx-nap/etc/nginx/nap-files/policies
 
 This tree has been created by Jeppe. It represents a piece of the policy, up to you to complete it with more branches and settings.
 
-## Commit your change
+**Known bug** : botDefense reference does not work. Engineering working it, so bot config blob set in the main policy blob.
 
+## Rolling upgrade
+
+As the source of truth is updated, it is time to tell to the infra to upgrade to the new config version. As reminder, we want something **idempotent** and **immutable**. It means a new NAP pod will be deployed in AKS thanks to rolling upgrade (new one deployed and old one destroyed)
+
+To do so, edit your Terraform plan by changing the version (line 30). Increment it as you want, it does not matter. The change matters.
+And `apply` the new plan.
+
+```
+terraform apply
+```
+
+Look at your AKS pods (`kubectl get pods`), and you should see 1 new NAP pod booting.
+After few seconds, the new NAP POD will handle the traffic.
+
+**Test your new deployment** : send an attack and check if you can see your new custom blocking page.
+
+## Manage False Positive in a DevSecOps world
+
+* Send this attack : `<my_fqdn>?a=<script>`
+* This will generate a XSS violation with 2 signatures match
+
+    * Sig 200001475 and 200000098
+    * You can see the violation log in your NAP pod (/var/log/app-protect/security.log)
+
+* DevOps don't want to make any change, and SecOps don't want to deal with AKS
+* As a SecOps, modify the policy to disable those 2 signatures
+
+    * In nginx-nap/etc/nginx/nap-files/policies/custom-references/signatures/modifications.json, disable the 2 signatures
+
+    ```
+        {
+            "modifications": [
+                {
+                    "entityChanges": {
+                        "enabled": false
+                    },
+                    "entity": {
+                        "signatureId": 200001475
+                    },
+                    "entityType": "signature",
+                    "action": "add-or-update"
+                },
+                {
+                    "entityChanges": {
+                        "enabled": false
+                    },
+                    "entity": {
+                        "signatureId": 200000098
+                    },
+                    "entityType": "signature",
+                    "action": "add-or-update"
+                }
+            ]
+        }
+    ```
+
+* Commit your change in GitHub
+* Run a rolling upgrade (via Terraform - increase the version)
+
+* Send the attack again, it should pass.
