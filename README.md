@@ -8,6 +8,7 @@ Repo to simplify and learn DevSecOps with Nginx App Protect
 * Kubeconfig file
 * Kubectl CLI and/or k8s tools like Lens
 * Nginx App Protect license
+* Terraform
 
 # Clone this repo in your own GitHub
 
@@ -41,28 +42,34 @@ A configuration update is:
 * Create an Azure Container Registry as private (premium offering)
 * Interconnect your laptop (the one with Docker running) with your private Azure repo
 
-`az login`
-
-`az account set --subscription <subscription-ID>`
-
-`TOKEN=$(az acr login --name <your_registry> --expose-token --output tsv --query accessToken)`
-
-`docker login <your_registry>.azurecr.io --username 00000000-0000-0000-0000-000000000000 --password $TOKEN`
+```
+az login
+az account set --subscription <subscription-ID>
+TOKEN=$(az acr login --name <your_registry> --expose-token --output tsv --query accessToken)
+docker login <your_registry>.azurecr.io --username 00000000-0000-0000-0000-000000000000 --password $TOKEN
+```
 
 * Collect the outcomes (username and password), and run the next command to create the k8s secret
 
-`kubectl create secret docker-registry secret-azure-acr --namespace <your-namespace> --docker-server=<your_registry>.azurecr.io --docker-username=<username-generated> --docker-password=<password-generated>`
+```
+kubectl create secret docker-registry secret-azure-acr --namespace <your-namespace> --docker-server=<your_registry>.azurecr.io --docker-username=<username-generated> --docker-password=<password-generated>
+```
 
 **Steps**
 
 * In /nginx-nap directory, copy your nginx-repo.crt and nginx-repo.key
+* Modifty the `entrypoint.sh` script so it points to your GitHub repo 
 * Build your docker image
 
-`DOCKER_BUILDKIT=1 docker build --no-cache --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key -t <your_registry>.azurecr.io/nginx/nap:v1.0 .`
+```
+DOCKER_BUILDKIT=1 docker build --no-cache --secret id=nginx-crt,src=nginx-repo.crt --secret id=nginx-key,src=nginx-repo.key -t <your_registry>.azurecr.io/nginx/nap:v1.0 .
+```
 
 * Push your NAP image into your private registry
 
-`docker push <your_registry>.azurecr.io/nginx/nap:v1.0`
+```
+docker push <your_registry>.azurecr.io/nginx/nap:v1.0
+```
 
 # Deploy the NAP in front of the Sentence App
 
@@ -74,13 +81,26 @@ It is time to expose and protect Sentence Application. To do so, deploy NAP in y
     * nginx-nap/etc/nginx/vhosts.d/http-sentence.conf -> this is the vhosts (choose any fqdn for your lab)
 
 * We will have a look later on the NAP policy tree
-* Deploy the NAP in your AKS
 
-`kubectl apply -f aks-sentence-deployment-nap.yaml`
+## Deploy the NAP in your AKS via Terraform
+
+In order to be idempotent and immutable, we will use Terraform for Config as Code, and Infra as Code.
+
+**Idempotent** : The system configurations for infrastructures remain consistent so that you get the same result each time they are used
+
+**Immutable** : An application or service is effectively redeployed each time any change occurs
+
+Run the Terraform in order to deploy the NAP in your AKS. Modify the plan accordingly so that the image is pulled from your private repository (line 36)
+
+```
+terraform init
+terraform plan
+terraform apply
+```
 
 # Test your NAP
 
-Now, you should see a new service as a Load Balancer. The lastest manifest command created a service kind LB. Azure created an Azure LB witha a public IP Address.
+Now, you should see a new service as a Load Balancer (can take up to 5 min). The lastest manifest command created a service kind LB. Azure created an Azure LB witha a public IP Address.
 
 ![](docs/images/lb.png)
 
@@ -90,4 +110,22 @@ Now, you should see a new service as a Load Balancer. The lastest manifest comma
 
 ![](docs/images/app.png)
 
+## Understand what happened
 
+It is important to understand what happened when the NAP booted up. Look at the `entrypoint.sh` script. This script runs a boot time.
+You can notice the NAP download all its configuration from GitHub
+
+```
+git clone --branch dev https://github.com/MattDierick/devsecops-nap.git /tmp/devsecops/
+cp -r /tmp/devsecops/nginx-nap/etc/nginx/* /etc/nginx/
+```
+
+# DevSecOps workflow
+
+Having done, DevOps deployed their app and exposed this app thanks to a NAP.
+
+Now, it is time for SecOps to `operate` the security in a modern environment. To do so, we will simulate a False Postive and a request from Business Unit to change the blocking page.
+
+## Change blocking page
+
+Business unit asked you to make the blocking page more custom. To do so, edit the `source of truth (Github)` to reflect this change.
