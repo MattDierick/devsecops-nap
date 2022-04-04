@@ -68,7 +68,7 @@ A configuration update is:
 
 It is time to expose and protect Sentence Application. To do so, deploy NAP in your AKS and route traffic to the right services.
 
-* As a reminder (kubectl get services), the FrontEnd service is called `sentence-frontend-nginx`and listening on port `80`
+* As a reminder (kubectl get services), the FrontEnd service is called `sentence-frontend-nginx` and listening on port `80`
 * In your Github repo, check the files
     * nginx-nap/etc/nginx/upstream.d/http-sentence.conf -> this is the upstream (the sentence-frontend-nginx service)
     * nginx-nap/etc/nginx/vhosts.d/http-sentence.conf -> this is the vhosts (choose any fqdn for your lab)
@@ -77,4 +77,17 @@ It is time to expose and protect Sentence Application. To do so, deploy NAP in y
 * Deploy the NAP in your AKS
 
 `kubectl apply -f aks-sentence-deployment-nap.yaml`
+
+# Test your NAP
+
+Now, you should see a new service as a Load Balancer. The lastest manifest command created a service kind LB. Azure created an Azure LB witha a public IP Address.
+
+![](docs/images/lb.png)
+
+* Modify you host file to point to this public IP address, and using the fqdn set in the vhost file.
+* Example: vhost file refering to `sentence-test.emea.f5se.com` and public LB IP address is `20.223.49.15`
+
+
+![](docs/images/app.png)
+
 
