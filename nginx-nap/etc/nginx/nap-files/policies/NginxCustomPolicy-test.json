@@ -5,7 +5,7 @@
         "applicationLanguage": "utf-8",
         "enforcementMode": "blocking",
         "bot-defense": {
-            "$ref": "file://etc/nginx/nap-files/policies/custom-references/automation-attacks/bot-defense.json"
+            "$ref": "file:///etc/nginx/nap-files/policies/custom-references/automation-attacks/bot-defense.json"
         },
         "blocking-settings": {
            "violations": [
