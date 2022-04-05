@@ -5,6 +5,6 @@
     "content": {
         "format": "default",
         "max_request_size": "any",
-        "max_message_size": "10k"
+        "max_message_size": "5k"
     }
 }
