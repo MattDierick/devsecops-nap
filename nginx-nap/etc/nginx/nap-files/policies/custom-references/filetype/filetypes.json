@@ -14,10 +14,6 @@
     "responseCheck": false
 },
 {
-    "name": "jko",
-    "allowed": false
-},
-{
     "name": "log",
     "allowed": true
 }
