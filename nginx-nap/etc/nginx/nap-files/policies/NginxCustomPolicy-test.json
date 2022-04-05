@@ -57,11 +57,11 @@
                     "block": true
                 }
            ],
-            "httpProtocolReference": {
-                "link": "file:///etc/nginx/nap-files/policies/custom-references/compliance/http-protocols.json"
+            "httpProtocol": {
+                "$ref": "file:///etc/nginx/nap-files/policies/custom-references/compliance/http-protocols.json"
             },
-            "evasionsReference": {
-                "link": "file:///etc/nginx/nap-files/policies/custom-references/compliance/evasions.json"
+            "evasions": {
+                "$ref": "file:///etc/nginx/nap-files/policies/custom-references/compliance/evasions.json"
             }
         },
         "general": {
