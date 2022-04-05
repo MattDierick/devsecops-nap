@@ -122,6 +122,14 @@ git clone --branch dev https://github.com/MattDierick/devsecops-nap.git /tmp/dev
 cp -r /tmp/devsecops/nginx-nap/etc/nginx/* /etc/nginx/
 ```
 
+## Connect to ELK
+
+If you have time, you can deploy your own ELK by following this guide : https://github.com/f5devcentral/f5-waf-elk-dashboards
+To do so, run an Ubuntu VM in Azure with docker. Then run the docher-compose. Then modify the nginx-nap/etc/nginx/nap-files/logs/custom_log_format.json accordingly with the Azure LB public IP addess.
+
+If you prefer, you can use an opened ELK running in Azure : http://40.113.104.130:5601/
+
+
 # 6. DevSecOps workflow
 
 Having done, DevOps deployed their app and exposed this app thanks to a NAP.
