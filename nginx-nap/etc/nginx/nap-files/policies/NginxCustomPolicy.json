@@ -8,7 +8,7 @@
             "settingsReference": {
                 "link": "file:///etc/nginx/nap-files/policies/custom-references/automation-attacks/bot-defense-settings.json"
             },
-            "mitigationReference": {
+            "mitigationsReference": {
                 "link": "file:///etc/nginx/nap-files/policies/custom-references/automation-attacks/bot-defense-mitigations.json"
             }
         },
