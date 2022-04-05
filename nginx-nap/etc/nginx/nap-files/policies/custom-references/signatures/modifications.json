@@ -1,5 +1,4 @@
-{
-    "modifications": [
+[
         {
             "entityChanges": {
                 "enabled": true
@@ -20,5 +19,4 @@
             "entityType": "signature",
             "action": "add-or-update"
         }
-    ]
-}
+]
