@@ -6,7 +6,6 @@
         "enforcementMode": "blocking",
         "bot-defense": {
             "$ref": "file://etc/nginx/nap-files/policies/custom-references/automation-attacks/bot-defense.json"
-            }
         },
         "blocking-settings": {
            "violations": [
