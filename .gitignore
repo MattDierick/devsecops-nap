@@ -3,3 +3,5 @@ nginx-repo.key
 terraform/terraform.tfstate
 terraform/terraform.tfstate.backup
 .DS_Store
+terraform/.terraform
+terraform/.terraform.lock.hcl

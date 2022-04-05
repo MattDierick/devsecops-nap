@@ -128,7 +128,7 @@ If you have time, you can deploy your own ELK by following this guide : https://
 To do so, run an Ubuntu VM in Azure with docker. Then run the docher-compose. Then modify the nginx-nap/etc/nginx/nap-files/logs/custom_log_format.json accordingly with the Azure LB public IP addess.
 
 If you prefer, you can use an opened ELK running in Azure : http://40.113.104.130:5601/
-
+Please provide with your source IP address in order to allow traffic from your location.
 
 # 6. DevSecOps workflow
 
@@ -148,8 +148,6 @@ Edit `nginx-nap/etc/nginx/nap-files/policies/custom-references/response-pages/re
 If you are interested to understand the NAP Policy tree, please look at here : https://github.com/MattDierick/devsecops-nap/tree/main/nginx-nap/etc/nginx/nap-files/policies
 
 This tree has been created by Jeppe. It represents a piece of the policy, up to you to complete it with more branches and settings.
-
-**Known bug** : botDefense reference does not work. Engineering working it, so bot config blob set in the main policy blob.
 
 ## Rolling upgrade
 
