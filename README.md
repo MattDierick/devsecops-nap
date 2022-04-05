@@ -209,4 +209,4 @@ The last step consists of :
 * Deploying a F5XC node in front of the AKS
 * Discover AKS services via F5XC Service Discovery
 * Create a F5XC LB with a WAAP policy (DDoS and Advanced Bot) - WAF already managed by NAP
-* Publish the Sentence application on the 20ish F5XC pops
+* Expose the Sentence application on the 20ish F5XC pops
