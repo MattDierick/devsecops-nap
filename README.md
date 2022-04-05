@@ -137,7 +137,7 @@ Edit `nginx-nap/etc/nginx/nap-files/policies/custom-references/response-pages/re
 * in your laptop. Don't forget to commit changes in GitHub
 
 
-If you are interested to understand the NAP Policy tree, please look at here : https://github.com/MattDierick/devsecops-nap/tree/dev/nginx-nap/etc/nginx/nap-files/policies
+If you are interested to understand the NAP Policy tree, please look at here : https://github.com/MattDierick/devsecops-nap/tree/main/nginx-nap/etc/nginx/nap-files/policies
 
 This tree has been created by Jeppe. It represents a piece of the policy, up to you to complete it with more branches and settings.
 
