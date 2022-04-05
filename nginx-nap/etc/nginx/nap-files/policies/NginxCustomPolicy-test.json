@@ -5,58 +5,9 @@
         "applicationLanguage": "utf-8",
         "enforcementMode": "blocking",
         "blocking-settings": {
-           "violations": [
-               {
-                   "name": "VIOL_RATING_THREAT",
-                   "alarm": true,
-                   "block": true
-               },
-               {
-                   "name": "VIOL_RATING_NEED_EXAMINATION",
-                   "alarm": false,
-                   "block": false
-               },
-               {
-                   "name": "VIOL_THREAT_CAMPAIGN",
-                   "alarm": true,
-                   "block": true
-               },
-               {
-                   "name": "VIOL_FILETYPE",
-                   "alarm": true,
-                   "block": true
-               },
-               {
-                    "name": "VIOL_EVASION",
-                    "alarm": true,
-                    "block": true
-                },
-                {
-                    "name": "VIOL_METHOD",
-                    "alarm": true,
-                    "block": true
-                },
-                {
-                    "name": "VIOL_HTTP_PROTOCOL",
-                    "alarm": false,
-                    "block": false
-                },
-                {
-                    "name": "VIOL_DATA_GUARD",
-                    "alarm": false,
-                    "block": false
-                },
-                {
-                    "name": "VIOL_HTTP_RESPONSE_STATUS",
-                    "alarm": true,
-                    "block": true
-                },
-                {
-                    "name": "VIOL_BLACKLISTED_IP",
-                    "alarm": true,
-                    "block": true
-                }
-           ],
+           "violations": {
+                "$ref": "file:///etc/nginx/nap-files/policies/custom-references/compliance/violations.json"
+           },
             "httpProtocol": {
                 "$ref": "file:///etc/nginx/nap-files/policies/custom-references/compliance/http-protocols.json"
             },
