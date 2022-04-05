@@ -108,7 +108,7 @@
             "enforcementUrls": []
         }
     },
-    "modifications": {
+    "modifications": [
         "$ref": "file:///etc/nginx/nap-files/policies/custom-references/signatures/modifications.json"
-    }
+    ]
 }
