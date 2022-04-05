@@ -4,9 +4,6 @@
         "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
         "applicationLanguage": "utf-8",
         "enforcementMode": "blocking",
-        "bot-defense": {
-            "$ref": "file:///etc/nginx/nap-files/policies/custom-references/automation-attacks/bot-defense.json"
-        },
         "blocking-settings": {
            "violations": [
                {
@@ -81,23 +78,26 @@
             "trustXff": true,
             "maximumHttpHeaderLength": 4096
         },
-        "signatureSetReference": {
-            "link": "file:///etc/nginx/nap-files/policies/custom-references/signatures/signature-sets.json"
+        "bot-defense": {
+            "$ref": "file:///etc/nginx/nap-files/policies/custom-references/automation-attacks/bot-defense.json"
         },
-        "servertechnologiesReference": {
-            "link": "file:///etc/nginx/nap-files/policies/custom-references/signatures/server-technologies.json"
+        "signature-sets": {
+            "$ref": "file:///etc/nginx/nap-files/policies/custom-references/signatures/signature-sets.json"
         },
-        "filetypeReference": {
-         "link": "file:///etc/nginx/nap-files/policies/custom-references/filetype/filetypes.json"
+        "server-technologies": {
+            "$ref": "file:///etc/nginx/nap-files/policies/custom-references/signatures/server-technologies.json"
         },
-        "methodReference": {
-            "link": "file:///etc/nginx/nap-files/policies/custom-references/compliance/methods.json"
+        "filetypes": {
+            "$ref": "file:///etc/nginx/nap-files/policies/custom-references/filetype/filetypes.json"
         },
-        "responsePageReference": {
-            "link": "file:///etc/nginx/nap-files/policies/custom-references/response-pages/response-pages.json"
+        "methods": {
+            "$ref": "file:///etc/nginx/nap-files/policies/custom-references/compliance/methods.json"
         },
-        "whitelistIpReference": {
-            "link": "file:///etc/nginx/nap-files/policies/custom-references/ip-exceptions/whitelist-ips.json"
+        "response-pages": {
+            "$ref": "file:///etc/nginx/nap-files/policies/custom-references/response-pages/response-pages.json"
+        },
+        "whitelist-ips": {
+            "$ref": "file:///etc/nginx/nap-files/policies/custom-references/ip-exceptions/whitelist-ips.json"
         },
         "data-guard": {
             "enabled": false,
