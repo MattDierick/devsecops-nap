@@ -130,6 +130,8 @@ To do so, run an Ubuntu VM in Azure with docker. Then run the docher-compose. Th
 If you prefer, you can use an opened ELK running in Azure : http://40.113.104.130:5601/
 Please provide with your source IP address in order to allow traffic from your location.
 
+![](docs/images/elk.png)
+
 # 6. DevSecOps workflow
 
 Having done, DevOps deployed their app and exposed this app thanks to a NAP.
