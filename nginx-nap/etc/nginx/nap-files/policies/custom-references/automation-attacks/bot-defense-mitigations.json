@@ -1,0 +1,16 @@
+{
+    "classes": [
+        {
+            "name": "trusted-bot",
+            "action": "alarm"
+        },
+        {
+            "name": "untrusted-bot",
+            "action": "block"
+        },
+        {
+            "name": "malicious-bot",
+            "action": "block"
+        }
+    ]
+}

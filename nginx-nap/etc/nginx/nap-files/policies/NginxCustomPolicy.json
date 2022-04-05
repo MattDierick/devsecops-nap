@@ -5,24 +5,11 @@
         "applicationLanguage": "utf-8",
         "enforcementMode": "blocking",
         "bot-defense": {
-            "settings": {
-                "isEnabled": false
+            "settingsReference": {
+                "link": "file:///etc/nginx/nap-files/policies/custom-references/automation-attacks/bot-defense-settings.json"
             },
-            "mitigations": {
-                "classes": [
-                    {
-                        "name": "trusted-bot",
-                        "action": "alarm"
-                    },
-                    {
-                        "name": "untrusted-bot",
-                        "action": "block"
-                    },
-                    {
-                        "name": "malicious-bot",
-                        "action": "block"
-                    }
-                ]
+            "mitigationReference": {
+                "link": "file:///etc/nginx/nap-files/policies/custom-references/automation-attacks/bot-defense-mitigations.json"
             }
         },
         "blocking-settings": {
@@ -104,9 +91,6 @@
         },
         "servertechnologiesReference": {
             "link": "file:///etc/nginx/nap-files/policies/custom-references/signatures/server-technologies.json"
-        },
-        "botDefenseReference": {
-            "link": "file:///etc/nginx/nap-files/policies/custom-references/automation-attacks/bot-defense.json"
         },
         "filetypeReference": {
          "link": "file:///etc/nginx/nap-files/policies/custom-references/filetype/filetypes.json"
