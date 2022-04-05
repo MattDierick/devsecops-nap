@@ -1,6 +1,6 @@
 {
     "settings": {
-        "isEnabled": true
+        "isEnabled": false
     },
     "mitigations": {
         "classes": [
@@ -10,7 +10,7 @@
             },
             {
                 "name": "untrusted-bot",
-                "action": "alarm"
+                "action": "block"
             },
             {
                 "name": "malicious-bot",

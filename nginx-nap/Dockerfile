@@ -22,13 +22,6 @@ RUN --mount=type=secret,id=nginx-crt,dst=/etc/ssl/nginx/nginx-repo.crt,mode=0644
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
-# Copy configuration files:
-COPY etc/nginx/nginx.conf /etc/nginx/
-COPY etc/nginx/upstream.d/ /etc/nginx/upstream.d/
-COPY etc/nginx/vhosts.d/ /etc/nginx/vhosts.d/
-COPY etc/nginx/nap-files/logs/custom_log_format.json /etc/nginx/nap-files/logs/
-COPY etc/nginx/nap-files/policies/ /etc/nginx/nap-files/policies/
-
 COPY entrypoint.sh /root/
 
 CMD ["sh", "/root/entrypoint.sh"]
