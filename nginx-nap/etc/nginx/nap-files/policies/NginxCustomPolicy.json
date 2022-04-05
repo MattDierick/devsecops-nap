@@ -4,85 +4,15 @@
         "template": { "name": "POLICY_TEMPLATE_NGINX_BASE" },
         "applicationLanguage": "utf-8",
         "enforcementMode": "blocking",
-        "bot-defense": {
-            "settings": {
-                "isEnabled": false
-            },
-            "mitigations": {
-                "classes": [
-                    {
-                        "name": "trusted-bot",
-                        "action": "alarm"
-                    },
-                    {
-                        "name": "untrusted-bot",
-                        "action": "block"
-                    },
-                    {
-                        "name": "malicious-bot",
-                        "action": "block"
-                    }
-                ]
-            }
-        },
         "blocking-settings": {
-           "violations": [
-               {
-                   "name": "VIOL_RATING_THREAT",
-                   "alarm": true,
-                   "block": true
-               },
-               {
-                   "name": "VIOL_RATING_NEED_EXAMINATION",
-                   "alarm": false,
-                   "block": false
-               },
-               {
-                   "name": "VIOL_THREAT_CAMPAIGN",
-                   "alarm": true,
-                   "block": true
-               },
-               {
-                   "name": "VIOL_FILETYPE",
-                   "alarm": true,
-                   "block": true
-               },
-               {
-                    "name": "VIOL_EVASION",
-                    "alarm": true,
-                    "block": true
-                },
-                {
-                    "name": "VIOL_METHOD",
-                    "alarm": true,
-                    "block": true
-                },
-                {
-                    "name": "VIOL_HTTP_PROTOCOL",
-                    "alarm": false,
-                    "block": false
-                },
-                {
-                    "name": "VIOL_DATA_GUARD",
-                    "alarm": false,
-                    "block": false
-                },
-                {
-                    "name": "VIOL_HTTP_RESPONSE_STATUS",
-                    "alarm": true,
-                    "block": true
-                },
-                {
-                    "name": "VIOL_BLACKLISTED_IP",
-                    "alarm": true,
-                    "block": true
-                }
-           ],
-            "httpProtocolReference": {
-                "link": "file:///etc/nginx/nap-files/policies/custom-references/compliance/http-protocols.json"
+           "violations": {
+                "$ref": "file:///etc/nginx/nap-files/policies/custom-references/compliance/violations.json"
+           },
+            "httpProtocol": {
+                "$ref": "file:///etc/nginx/nap-files/policies/custom-references/compliance/http-protocols.json"
             },
-            "evasionsReference": {
-                "link": "file:///etc/nginx/nap-files/policies/custom-references/compliance/evasions.json"
+            "evasions": {
+                "$ref": "file:///etc/nginx/nap-files/policies/custom-references/compliance/evasions.json"
             }
         },
         "general": {
@@ -99,26 +29,26 @@
             "trustXff": true,
             "maximumHttpHeaderLength": 4096
         },
-        "signatureSetReference": {
-            "link": "file:///etc/nginx/nap-files/policies/custom-references/signatures/signature-sets.json"
+        "bot-defense": {
+            "$ref": "file:///etc/nginx/nap-files/policies/custom-references/automation-attacks/bot-defense.json"
         },
-        "servertechnologiesReference": {
-            "link": "file:///etc/nginx/nap-files/policies/custom-references/signatures/server-technologies.json"
+        "signature-sets": {
+            "$ref": "file:///etc/nginx/nap-files/policies/custom-references/signatures/signature-sets.json"
         },
-        "botDefenseReference": {
-            "link": "file:///etc/nginx/nap-files/policies/custom-references/automation-attacks/bot-defense.json"
+        "server-technologies": {
+            "$ref": "file:///etc/nginx/nap-files/policies/custom-references/signatures/server-technologies.json"
         },
-        "filetypeReference": {
-         "link": "file:///etc/nginx/nap-files/policies/custom-references/filetype/filetypes.json"
+        "filetypes": {
+            "$ref": "file:///etc/nginx/nap-files/policies/custom-references/filetype/filetypes.json"
         },
-        "methodReference": {
-            "link": "file:///etc/nginx/nap-files/policies/custom-references/compliance/methods.json"
+        "methods": {
+            "$ref": "file:///etc/nginx/nap-files/policies/custom-references/compliance/methods.json"
         },
-        "responsePageReference": {
-            "link": "file:///etc/nginx/nap-files/policies/custom-references/response-pages/response-pages.json"
+        "response-pages": {
+            "$ref": "file:///etc/nginx/nap-files/policies/custom-references/response-pages/response-pages.json"
         },
-        "whitelistIpReference": {
-            "link": "file:///etc/nginx/nap-files/policies/custom-references/ip-exceptions/whitelist-ips.json"
+        "whitelist-ips": {
+            "$ref": "file:///etc/nginx/nap-files/policies/custom-references/ip-exceptions/whitelist-ips.json"
         },
         "data-guard": {
             "enabled": false,
