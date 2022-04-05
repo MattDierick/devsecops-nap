@@ -1,22 +1,24 @@
-[
-    {
-        "entityChanges": {
-            "enabled": true
+{
+    "modifications": [
+        {
+            "entityChanges": {
+                "enabled": true
+            },
+            "entity": {
+                "signatureId": 200001475
+            },
+            "entityType": "signature",
+            "action": "add-or-update"
         },
-        "entity": {
-            "signatureId": 200001475
-        },
-        "entityType": "signature",
-        "action": "add-or-update"
-    },
-    {
-        "entityChanges": {
-            "enabled": true
-        },
-        "entity": {
-            "signatureId": 200000098
-        },
-        "entityType": "signature",
-        "action": "add-or-update"
-    }
-]
+        {
+            "entityChanges": {
+                "enabled": true
+            },
+            "entity": {
+                "signatureId": 200000098
+            },
+            "entityType": "signature",
+            "action": "add-or-update"
+        }
+    ]
+}
