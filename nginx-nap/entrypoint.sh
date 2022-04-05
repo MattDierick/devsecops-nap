@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-git clone https://github.com/MattDierick/devsecops-nap.git /tmp/devsecops/
+git clone --branch dev https://github.com/MattDierick/devsecops-nap.git /tmp/devsecops/
 
 cp -r /tmp/devsecops/nginx-nap/etc/nginx/* /etc/nginx/
 

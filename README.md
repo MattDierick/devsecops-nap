@@ -10,11 +10,13 @@ Repo to simplify and learn DevSecOps with Nginx App Protect
 * Nginx App Protect license
 * Terraform
 
-# Clone this repo in your own GitHub
+# 1. Clone this repo in your own GitHub
 
-Clone the repo in order to have your own repo in your own GitHub
+* Clone the repo in order to have your own repo in your own GitHub
+* Create a `dev` branch in order to do not modify the main. 
+* Move to the `dev` branch. You will work on the `dev` branch.
 
-# Deploy Sentence App in your AKS
+# 2. Deploy Sentence App in your AKS
 
 * Deploy Sentence Application in your AKS
 * To do so, use the manifests available in /k8s-deployment folder `aks-sentence-deployment.yaml`
@@ -27,7 +29,7 @@ The manifest aks-sentence-deployment.yaml will deploy the different microservice
 
 The manifest `aks-sentence-deployment-nginx-nolb.yaml` will deploy the frontend service (base on nginx webserver). As you can notice, this service is not yet exposed. The associated service is a ClusterIP type.
 
-# Build the Nginx App Protect docker image
+# 3. Build the Nginx App Protect docker image
 
 In order to expose the Sentence Application, we will deploy a NAP as a POD (not Ingress) in order to expose and protect the Sentence Application.
 
@@ -71,7 +73,7 @@ DOCKER_BUILDKIT=1 docker build --no-cache --secret id=nginx-crt,src=nginx-repo.c
 docker push <your_registry>.azurecr.io/nginx/nap:v1.0
 ```
 
-# Deploy the NAP in front of the Sentence App
+# 4. Deploy the NAP in front of the Sentence App
 
 It is time to expose and protect Sentence Application. To do so, deploy NAP in your AKS and route traffic to the right services.
 
@@ -98,7 +100,7 @@ terraform plan
 terraform apply
 ```
 
-# Test your NAP
+# 5. Test your NAP
 
 Now, you should see a new service as a Load Balancer (can take up to 5 min). The lastest manifest command created a service kind LB. Azure created an Azure LB witha a public IP Address.
 
@@ -120,7 +122,7 @@ git clone --branch dev https://github.com/MattDierick/devsecops-nap.git /tmp/dev
 cp -r /tmp/devsecops/nginx-nap/etc/nginx/* /etc/nginx/
 ```
 
-# DevSecOps workflow
+# 6. DevSecOps workflow
 
 Having done, DevOps deployed their app and exposed this app thanks to a NAP.
 
@@ -202,7 +204,7 @@ After few seconds, the new NAP POD will handle the traffic.
 
 * Send the attack again, it should pass.
 
-# Deploy F5XC WAAP in front of the AKS infrastructure
+# 7. Deploy F5XC WAAP in front of the AKS infrastructure
 
 The last step consists of :
 
