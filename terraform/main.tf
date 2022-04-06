@@ -33,7 +33,7 @@ resource "kubernetes_deployment" "nginx-nap" {
 
       spec {
         container {
-          image = "registryemeasa.azurecr.io/nginx/nap:v1.0"
+          image = "nanreg.azurecr.io/nginx/nap:v1.0"
           name  = "nginx-nap"
           image_pull_policy = "Always"
 
