@@ -1,6 +1,6 @@
 provider "kubernetes" {
   config_path    = "~/.kube/config"
-  config_context = "aks-northeurope"
+  config_context = "mj-jepp-edu-aks-cluster"
 }
 
 resource "kubernetes_deployment" "nginx-nap" {
