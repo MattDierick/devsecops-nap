@@ -3,7 +3,7 @@
 FROM centos:7.4.1708
 
 # Install prerequisite packages:
-RUN yum -y install wget ca-certificates epel-release tcpdump git
+RUN yum -y install wget ca-certificates epel-release tcpdump git fio
 
 # Add NGINX Plus repo to Yum:
 RUN wget -P /etc/yum.repos.d https://cs.nginx.com/static/files/nginx-plus-7.4.repo
