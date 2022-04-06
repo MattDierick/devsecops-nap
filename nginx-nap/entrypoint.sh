@@ -1,4 +1,4 @@
-#!/usr/bin/env bash v2
+#!/usr/bin/env bash
 
 git clone --branch dev https://github.com/MattDierick/devsecops-nap.git /tmp/devsecops/
 

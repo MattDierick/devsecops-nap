@@ -92,7 +92,7 @@ In order to be idempotent and immutable, we will use Terraform for Config as Cod
 
 **Immutable** : An application or service is effectively redeployed each time any change occurs
 
-Run the Terraform in order to deploy the NAP in your AKS. Modify the plan accordingly so that the image is pulled from your private repository (line 36)
+Run the Terraform in order to deploy the NAP in your AKS. `Modify` the plan accordingly so that the image is pulled from your private repository (line 36), and also point to your `kubeconfig context` (line 3)
 
 ```
 terraform init
