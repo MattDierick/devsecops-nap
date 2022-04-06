@@ -9,21 +9,19 @@ Repo to simplify and learn DevSecOps with Nginx App Protect
 * Kubectl CLI and/or k8s tools like Lens
 * Nginx App Protect license
 * Terraform
+* Docker desktop
 
 # 1. Clone this repo in your own GitHub
 
-* Clone the repo in order to have your own repo in your own GitHub
+* Clone or Fork the repo in order to have your own repo in your own GitHub
 * Create a `dev` branch in order to do not modify the main. 
 * Move to the `dev` branch. You will work on the `dev` branch.
 
 # 2. Deploy Sentence App in your AKS
 
-* Deploy Sentence Application in your AKS
-* To do so, use the manifests available in /k8s-deployment folder `aks-sentence-deployment.yaml`
-
 ## Deploy the Sentence App microservice
 
-The manifest aks-sentence-deployment.yaml will deploy the different microservices. As reminder, the Sentence Application display a sentence with 4 words coming from 4 microservices (more information here https://github.com/MattDierick/sentence-generator-app)
+The manifest `aks-sentence-deployment.yaml` will deploy the different microservices. As reminder, the Sentence Application display a sentence with 4 words coming from 4 microservices (more information here https://github.com/MattDierick/sentence-generator-app)
 
 ## Deploy the frontend microservice
 
@@ -51,7 +49,7 @@ TOKEN=$(az acr login --name <your_registry> --expose-token --output tsv --query 
 docker login <your_registry>.azurecr.io --username 00000000-0000-0000-0000-000000000000 --password $TOKEN
 ```
 
-* Collect the outcomes (username and password), and run the next command to create the k8s secret
+* Collect the outcomes (username and password) from the Azure Portal (access keys section), and run the next command to create the k8s secret
 
 ```
 kubectl create secret docker-registry secret-azure-acr --namespace <your-namespace> --docker-server=<your_registry>.azurecr.io --docker-username=<username-generated> --docker-password=<password-generated>
