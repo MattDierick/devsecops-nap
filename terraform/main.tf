@@ -1,3 +1,13 @@
+variable "client_certificate" {
+  type = string
+}
+variable "client_key" {
+  type = string
+}
+variable "ca_certificate" {
+  type = string
+}
+
 provider "kubernetes" {
   host = "https://aks-matt-eu-dns-8dc14823.hcp.northeurope.azmk8s.io:443"
 
