@@ -1,9 +1,9 @@
 provider "kubernetes" {
   host = "https://aks-matt-eu-dns-8dc14823.hcp.northeurope.azmk8s.io:443"
 
-  client_certificate     = base64decode(TF_VAR_client_certificate)
-  client_key             = base64decode(TF_VAR_client_key)
-  cluster_ca_certificate = base64decode(TF_VAR_cluster_ca_certificate)
+  client_certificate     = base64decode(var.client_certificate)
+  client_key             = base64decode(var.client_key)
+  cluster_ca_certificate = base64decode(var.ca_certificate)
 }
 
 resource "kubernetes_deployment" "nginx-nap" {
