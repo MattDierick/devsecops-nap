@@ -8,3 +8,7 @@ terraform/.terraform.lock.hcl
 terraform/keys/client-cert.pem
 terraform/keys/client-key.pem
 terraform/keys/cluster-ca-cert.pem
+terraform/prep-env/.terraform/providers/registry.terraform.io/hashicorp/azurerm/3.0.0/darwin_amd64
+terraform/prep-env/.terraform.lock.hcl
+terraform/prep-env/terraform.tfstate
+terraform/prep-env/terraform.tfstate.backup
