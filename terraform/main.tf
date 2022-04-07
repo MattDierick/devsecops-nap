@@ -1,6 +1,9 @@
 provider "kubernetes" {
-  config_path    = "~/.kube/config"
-  config_context = "aks-northeurope"
+  host = "https://aks-matt-eu-dns-8dc14823.hcp.northeurope.azmk8s.io:443"
+
+  client_certificate     = base64decode(var.client_certificate)
+  client_key             = base64decode(var.client_key)
+  cluster_ca_certificate = base64decode(var.cluster_ca_certificate)
 }
 
 resource "kubernetes_deployment" "nginx-nap" {
@@ -27,7 +30,7 @@ resource "kubernetes_deployment" "nginx-nap" {
           app = "nginx-nap"
         }
         annotations = {
-          version = "v1.53"
+          version = "${formatdate("YYYYMMDD hh:mm:ss", timestamp())}"
         }
       }
 

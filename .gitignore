@@ -5,3 +5,6 @@ terraform/terraform.tfstate.backup
 .DS_Store
 terraform/.terraform
 terraform/.terraform.lock.hcl
+terraform/keys/client-cert.pem
+terraform/keys/client-key.pem
+terraform/keys/cluster-ca-cert.pem
