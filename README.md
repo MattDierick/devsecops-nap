@@ -240,9 +240,22 @@ kubectl apply -f logstash-service.yaml
 echo $(kubectl get secret elasticsearch-es-elastic-user -o go-template='{{.data.elastic | base64decode}}')
 ```
 
-* Push the NAP Dashboard into ECK (change the password value with your password)
+* Push the NAP Dashboard into ECK (change the password value with your password). But first, find your Logstash-lb public IP address
 
 ```
+❯ kubectl get services
+NAME                         TYPE           CLUSTER-IP     EXTERNAL-IP      PORT(S)                          AGE
+elasticsearch-es-default     ClusterIP      None           <none>           <none>                           107m
+elasticsearch-es-http        LoadBalancer   10.0.28.236    20.223.17.201    9200:31190/TCP                   107m
+elasticsearch-es-transport   ClusterIP      None           <none>           9300/TCP                         107m
+kibana-kb-http               LoadBalancer   10.0.253.12    20.223.250.186   443:31235/TCP                    104m
+kubernetes                   ClusterIP      10.0.0.1       <none>           443/TCP                          391d
+logstash                     ClusterIP      10.0.151.251   <none>           25826/TCP,5044/TCP               89m
+logstash-lb                  LoadBalancer   10.0.76.75     20.123.125.224   25826:32099/TCP,5044:31063/TCP   78m
+```
+
+```
+KIBANA_URL=http://<your-public-ip-logstash-lb>:5601
 jq -s . overview-dashboard-bot.ndjson | jq '{"objects": . }' | \
     curl -k --location --user elastic:<your-password> --request POST "$KIBANA_URL/api/kibana/dashboards/import" \
     --header 'kbn-xsrf: true' \
