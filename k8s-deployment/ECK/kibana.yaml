@@ -1,0 +1,37 @@
+apiVersion: kibana.k8s.elastic.co/v1
+kind: Kibana
+metadata:
+  name: kibana
+spec:
+  version: 7.8.0
+  count: 1
+  elasticsearchRef:
+    name: "elasticsearch"
+  secureSettings:
+  - secretName: kibana-saved-objects-encrypted-key
+  http:
+    service:
+      spec:
+        type: LoadBalancer
+        ports:
+        - name: https
+          protocol: TCP
+          port: 443
+          targetPort: 5601
+    #tls:
+      #selfSignedCertificate:
+        #subjectAltNames:
+        #- ip: 192.168.0.1
+        #- dns: example.com
+  # this shows how to customize the Kibana pod
+  # with labels and resource limits
+  podTemplate:
+    metadata:
+      labels:
+        app: kibana
+    spec:
+      containers:
+      - name: kibana
+        resources:
+          limits:
+            memory: 1Gi
