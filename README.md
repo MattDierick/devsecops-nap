@@ -218,3 +218,34 @@ The last step consists of :
 * Discover AKS services via F5XC Service Discovery
 * Create a F5XC LB with a WAAP policy (DDoS and Advanced Bot) - WAF already managed by NAP
 * Expose the Sentence application on the 20ish F5XC pops
+
+
+# Extra-steps to setup an ECK in your AKS
+
+* Go to k8s-deployment/ECK directory and execute all the manifest in this order
+
+``` 
+kubect apply -f all-in-one.yaml
+kubect apply -f elasticsearch.yaml
+kubectl create secret generic kibana-saved-objects-encrypted-key --from-literal=xpack.encryptedSavedObjects.encryptionKey=12345678901234567890123456789012
+kubectl apply -f kibana.yaml
+kubectl apply -f logstash-cm.yaml
+kubectl apply -f logstash.yaml
+kubectl apply -f logstash-service.yaml
+```
+
+* Get your ECK password 
+
+```
+echo $(kubectl get secret elasticsearch-es-elastic-user -o go-template='{{.data.elastic | base64decode}}')
+```
+
+* Push the NAP Dashboard into ECK (change the password value with your password)
+
+```
+jq -s . overview-dashboard-bot.ndjson | jq '{"objects": . }' | \
+    curl -k --location --user elastic:<your-password> --request POST "$KIBANA_URL/api/kibana/dashboards/import" \
+    --header 'kbn-xsrf: true' \
+    --header 'Content-Type: text/plain' -d @- \
+    | jq
+```
