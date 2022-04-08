@@ -151,7 +151,7 @@ This tree has been created by Jeppe. It represents a piece of the policy, up to 
 
 ## Rolling upgrade
 
-As the source of truth is updated, it is time to tell to the infra to upgrade to the new config version. As reminder, we want something **idempotent** and **immutable**. It means a new NAP pod will be deployed in AKS thanks to rolling upgrade (new one deployed and old one destroyed)
+As the source of truth is updated, it is time to tell to the infra to upgrade to the new config version. As reminder, we want something **immutable**. It means a new NAP pod will be deployed in AKS thanks to rolling upgrade (new one deployed and old one destroyed)
 
 To do so, edit your Terraform plan by changing the version (line 30). Increment it as you want, it does not matter. The change matters.
 And `apply` the new plan.
