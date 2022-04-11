@@ -255,7 +255,7 @@ logstash-lb                  LoadBalancer   10.0.76.75     20.123.125.224   2582
 ```
 
 ```
-KIBANA_URL=http://<your-public-ip-logstash-lb>:5601
+KIBANA_URL=https://<your-public-ip-kibana-lb>
 jq -s . overview-dashboard-bot.ndjson | jq '{"objects": . }' | \
     curl -k --location --user elastic:<your-password> --request POST "$KIBANA_URL/api/kibana/dashboards/import" \
     --header 'kbn-xsrf: true' \
