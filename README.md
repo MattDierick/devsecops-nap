@@ -1,6 +1,8 @@
 # DevSecOps with Nginx App Protect and F5XC
 Repo to simplify and learn DevSecOps with Nginx App Protect
 
+You can find a full lab guide here : https://clouddocs.f5.com/training/community/devsecops-azure-workshop/html/
+
 # Pre-Reqs
 
 * Azure AKS up and running
