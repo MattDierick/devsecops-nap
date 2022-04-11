@@ -12,6 +12,9 @@ spec:
   - name: "5044"
     port: 5044
     targetPort: 5044
+  - name: "5045"
+    port: 5045
+    targetPort: 5045
   selector:
     app: logstash
 status:
@@ -30,6 +33,9 @@ spec:
   - name: "5044"
     port: 5044
     targetPort: 5044
+  - name: "5045"
+    port: 5045
+    targetPort: 5045
   selector:
     app: logstash
   type: LoadBalancer
