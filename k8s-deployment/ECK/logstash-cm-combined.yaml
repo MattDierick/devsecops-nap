@@ -159,7 +159,7 @@ data:
         }
       }
     }
-    output 
+    output {
       if "waf" in [tags] {
         elasticsearch {
           index => "waf-logs-%{+YYY.MM.dd}"
