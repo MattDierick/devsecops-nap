@@ -11,6 +11,7 @@ spec:
     ports:
     - containerPort: 25826
     - containerPort: 5044
+    - containerPort: 5045
     env:
     - name: ES_HOSTS
       value: "https://elasticsearch-es-http:9200"
