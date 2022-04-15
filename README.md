@@ -11,7 +11,7 @@ You can find a full lab guide here : https://clouddocs.f5.com/training/community
 * Kubectl CLI and/or k8s tools like Lens
 * Nginx App Protect license
 * Terraform
-* Docker desktop
+* Docker desktop or CE
 
 # 1. Clone this repo in your own GitHub
 
