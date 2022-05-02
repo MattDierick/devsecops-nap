@@ -9,7 +9,7 @@ variable "cluster_ca_certificate" {
 }
 
 provider "kubernetes" {
-  host = "https://aks-matt-eu-dns-8dc14823.hcp.northeurope.azmk8s.io:443"
+  host = "https://aks-mdi-k8s-lab-devsecops-cf23e3e1.hcp.francecentral.azmk8s.io:443"
 
   client_certificate     = base64decode(var.client_certificate)
   client_key             = base64decode(var.client_key)
