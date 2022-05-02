@@ -46,7 +46,7 @@ resource "kubernetes_deployment" "nginx-nap" {
 
       spec {
         container {
-          image = "acrmdi.azurecr.io/nginx/nap:v1.0"
+          image = "acrmdi.azurecr.io/nginx/nap:tf_cloud"
           name  = "nginx-nap"
           image_pull_policy = "Always"
 
