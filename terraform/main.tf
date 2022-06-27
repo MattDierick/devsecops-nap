@@ -1,6 +1,6 @@
 provider "kubernetes" {
-  config_path    = "~/.kube/config"
-  config_context = "aks-northeurope"
+  config_path    = "/Users/dierick/Downloads/tmp/devsecops-nap/terraform/prep-env/kubeconfig-devsecops-matt"
+  config_context = "aks-mdi-lab-devsecops"
 }
 
 resource "kubernetes_deployment" "nginx-nap" {
@@ -33,7 +33,7 @@ resource "kubernetes_deployment" "nginx-nap" {
 
       spec {
         container {
-          image = "registryemeasa.azurecr.io/nginx/nap:v1.0"
+          image = "acrmdi.azurecr.io/nginx/nap:v1.0"
           name  = "nginx-nap"
           image_pull_policy = "Always"
 

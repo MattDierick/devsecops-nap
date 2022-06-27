@@ -12,3 +12,4 @@ terraform/prep-env/.terraform/providers/registry.terraform.io/hashicorp/azurerm/
 terraform/prep-env/.terraform.lock.hcl
 terraform/prep-env/terraform.tfstate
 terraform/prep-env/terraform.tfstate.backup
+terraform/prep-env/kubeconfig-devsecops-matt
